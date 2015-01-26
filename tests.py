@@ -20,8 +20,10 @@ class NumRecordsTest(unittest.TestCase):
   correct_len = 126198
 
   def setUp(self):
-    os.remove(self.output)
-
+    try:
+      os.remove(self.output)
+    except:
+      pass
 
   def test(self):
     num_records = test_num_records(self.source, self.output)
