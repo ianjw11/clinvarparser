@@ -1,0 +1,8 @@
+Usage:
+
+to run converter script:
+python run.py --source /path/to/clinvar.xml --output /path/to/output.json
+
+to run tests:
+python -m unittest tests
+
