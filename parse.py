@@ -39,7 +39,7 @@ class ParseClinVar(object):
        'filter_func': lambda elem: elem.attrib.get('DB') == 'Gene'}],
 
     'ReferenceClinVarAssertion/MeasureSet/Measure/XRef': [
-      {'output_path': 'entrez_gene_id', 'attr': 'ID', 'clean_func': lambda id: unicode(id) + "rs",
+      {'output_path': 'rs_id', 'attr': 'ID', 'clean_func': lambda id: unicode(id) + "rs",
        'filter_func': lambda elem: elem.attrib.get('DB') == 'Gene'}],
   }
 
