@@ -43,12 +43,12 @@ class ParseClinVar(object):
        'filter_func': lambda elem: elem.attrib.get('DB') == 'Gene'}],
   }
 
-  computed_elements = {
-    'rcvaccession_full': lambda doc: "{}.{}".format(
-      doc.get('rcvaccession', ""), unicode(doc.get('rcvaccession_version', ""))),
+  computed_elements = (
+    ('rcvaccession_full', lambda doc: "{}.{}".format(
+      doc.get('rcvaccession', ""), unicode(doc.get('rcvaccession_version', "")))),
 
-    'uuid': lambda doc: doc.get('rcvaccession_full')
-  }
+    ('uuid', lambda doc: doc.get('rcvaccession_full'))
+  )
 
   def __init__(self, filename=None, output=None, num_procs=8):
     self.num_procs = num_procs
@@ -94,7 +94,7 @@ class ParseClinVar(object):
             data = cls.get_elem_data(elem, output)
             doc[output['output_path']].append(data)
 
-    for k, v in cls.computed_elements.iteritems():
+    for k, v in cls.computed_elements:
       doc[k] = v(doc)
     return cls.serializer.dumps(doc)
 
